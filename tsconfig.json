@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "jsx": "react-jsx",
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "outDir": "./dist/",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+  },
+  "exclude": ["node_modules"],
+  "types": ["react/next", "react-dom/next"]
+}
