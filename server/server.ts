@@ -1,7 +1,7 @@
-const express = require('express');
-const path = require('path');
-
-var cookieParser = require('cookie-parser');
+import express from 'express';
+import path from 'path';
+import { Request, Response, NextFunction } from 'express';
+// var cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = 3000;
@@ -29,16 +29,38 @@ app.get('/', (req, res) => {
 import controllers 
 */
 
+/* 
+catch-all route handler for any requests to an unknown route 
+*/
+app.use('*', (req, res) => res.status(404).json('Page not found'));
+
+/* 
+Global error handler 
+*/
+app.use('/', (err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error', // Log is for the developer as it will show up in the terminal
+    status: 400,
+    message: { err: 'An error occurred' }, // For the client as it will be returned to the client as specified in line 90
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
+
+/* 
+Start server 
+*/
 app.listen(PORT, () => {
-    console.log(`Server is listening on ${PORT}`);
-})
+  console.log(`Server is listening on ${PORT}`);
+});
 
 /**
- * 
- * 
- * 
+ *
+ *
+ *
  * Super official
- * 
- * 
- * 
+ *
+ *
+ *
  */
