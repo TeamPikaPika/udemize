@@ -28,3 +28,17 @@ app.get('/', (req, res) => {
 /* 
 import controllers 
 */
+
+app.listen(PORT, () => {
+    console.log(`Server is listening on ${PORT}`);
+})
+
+/**
+ * 
+ * 
+ * 
+ * Super official
+ * 
+ * 
+ * 
+ */
