@@ -6,6 +6,10 @@ import { Request, Response, NextFunction } from 'express';
 const app = express();
 const PORT = 3000;
 
+/* 
+import routers
+*/
+
 /*
  * Automatically parse urlencoded body content and form data from incoming requests and place it
  * in req.body
@@ -18,17 +22,15 @@ Serve static files
 */
 app.use('/assets', express.static(path.resolve(__dirname, '../src/assets')));
 
-/* 
-Routes 
-*/
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
 /* 
-import controllers 
+Route handlers
 */
-
+app.use('/udemy', udemyRouter);
+app.use('/chatgpt', chatGpt);
 /* 
 catch-all route handler for any requests to an unknown route 
 */
@@ -54,13 +56,3 @@ Start server
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
 });
-
-/**
- *
- *
- *
- * Super official
- *
- *
- *
- */
