@@ -6,18 +6,24 @@ var cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 3000;
 
-
 /*
  * Automatically parse urlencoded body content and form data from incoming requests and place it
  * in req.body
  */
 app.use(express.json());
-app.use(express.urlencoded()); 
+app.use(express.urlencoded());
 
 /* 
 Serve static files
 */
 app.use('/assets', express.static(path.resolve(__dirname, '../src/assets')));
+
+/* 
+Routes 
+*/
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../src/index.html'));
+});
 
 /* 
 import controllers 
