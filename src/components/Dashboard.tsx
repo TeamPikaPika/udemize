@@ -8,10 +8,10 @@ const Dashboard: FC = () => {
 	//state to store users' input
 	const [formData, setFormData] = useState('');
 
-	//save current input in state, before user submits
-	// const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFormData(e.target.value);
-	// };
+	// save current input in state, before user submits
+	const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(e.target.value);
+	};
 
 	//handle what happens to input when user submits
 	const onSubmit = (e: SyntheticEvent) => {
