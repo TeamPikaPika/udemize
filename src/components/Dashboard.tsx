@@ -1,10 +1,29 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material'
 
 
 const Dashboard: FC = () => {
+
+  //state to store users' input
+  const [formData, setFormData] = useState('')
+
+  //save current input in state, before user submits
+  const onChange = (e: any )=> {
+    setFormData(e.target.value)
+  }
+
+  //handle what happens to input when user submits
+  const onSubmit = (e: any) => {
+    e.preventDefault()
+    if (!formData) return;
+    //insert call to backend
+    //reset formData
+    setFormData('')
+
+  }
+
   return (
     <>
     <Typography variant = "h2" sx = {{textAlign: 'center'}}>
