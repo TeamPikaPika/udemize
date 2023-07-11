@@ -9,9 +9,7 @@ const Container: FC = () => {
 		<div className="container">
 			'container'
 			<Outlet />
-			{/* <Dashboard /> */}
-			{/* <Login /> */}
-			{/* <Signup /> */}
+	
 		</div>
 	);
 };
