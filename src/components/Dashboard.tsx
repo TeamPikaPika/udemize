@@ -29,6 +29,7 @@ const Dashboard: FC = () => {
 			<Typography variant="h2" sx={{ textAlign: 'center' }}>
 				Udemize
 			</Typography>
+
 			<Box
 				className="dashboard"
 				sx={{
