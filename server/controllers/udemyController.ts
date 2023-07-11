@@ -1,36 +1,38 @@
 import { Request, Response, NextFunction } from 'express';
-const udemyController = {};
+import { getUdemyLink } from '../actions/getUdemyLink';
+import { Course } from '../types';
 
-udemyController.getCourse = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { userInput } = req.body;
-  if (!userInput)
-    return next({
-      log: 'Missing userInput!!',
-      status: 400,
-      message: { err: 'Missing userInput!!' },
-    });
-  const queryStr;
-  const addQueryStr;
-  const result = await db.query(queryStr);
-  try {
-    if (result) {
-      res.locals.url = result.rows[0];
+const udemyController: Course = {
+  getCourse: async (req: Request, res: Response, next: NextFunction) => {
+    const { userInput } = req.body;
+    if (!userInput)
+      return next({
+        log: 'Missing userInput!!',
+        status: 400,
+        message: { err: 'Missing userInput!!' },
+      });
+    const queryStr = ``;
+    const addQueryStr = ``;
+    const result = await db.query(queryStr);
+    try {
+      let url;
+      if (result) {
+        url = result.rows[0];
+      } else {
+        // Helper function to fetch link from Udemy API
+        const newLink = await getUdemyLink(userInput);
+        const postResult = await db.query(addQueryStr);
+        const fetchResult = await db.query(queryStr);
+        url = fetchResult.rows[0];
+      }
+      res.locals.url = url;
       return next();
-    } else {
-      const postResult = await db.query(addQueryStr);
-      const fetchResult = await db.query(queryStr);
-      res.locals.url = fetchResult.rows[0];
-      return next();
+    } catch (err) {
+      next({
+        log: 'Error in udemyController.getCourse',
+      });
     }
-  } catch (err) {
-    next({
-      log: 'Error in udemyController.getCourse',
-    });
-  }
+  },
 };
 
 export default udemyController;
