@@ -19,10 +19,12 @@ udemyController.getCourse = async (
   try {
     if (result) {
       res.locals.url = result.rows[0];
+      return next();
     } else {
       const postResult = await db.query(addQueryStr);
       const fetchResult = await db.query(queryStr);
       res.locals.url = fetchResult.rows[0];
+      return next();
     }
   } catch (err) {
     next({

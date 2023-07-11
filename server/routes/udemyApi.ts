@@ -3,6 +3,8 @@ import udemyController from '../controllers/udemyController';
 
 const udemyRouter = Router();
 
-udemyRouter.get('/', (req, res) => {});
+udemyRouter.get('/', udemyController.getCourse, (req, res) => {
+  return res.status(200)._construct(res.locals.url);
+});
 
 export default udemyRouter;
