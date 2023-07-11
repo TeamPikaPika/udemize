@@ -49,11 +49,12 @@ const Login: FC = () => {
 		const data = new FormData(event.currentTarget);
 		console.log({
 			email: data.get('email'),
-			password: data.get('password'),
+			password: data.get('signup'),
 		});
 		/* 
     TODO fetch request to back end to confirm user id
     */
+
 	};
 
 	return (
