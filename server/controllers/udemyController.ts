@@ -1,6 +1,11 @@
+import { Request, Response, NextFunction } from 'express';
 const udemyController = {};
 
-udemyController.getCourse = async (req, res, next) => {
+udemyController.getCourse = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { userInput } = req.body;
   if (!userInput)
     return next({
@@ -25,3 +30,5 @@ udemyController.getCourse = async (req, res, next) => {
     });
   }
 };
+
+export default udemyController;
