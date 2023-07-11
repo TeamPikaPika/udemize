@@ -21,6 +21,7 @@ const udemyController: Course = {
       } else {
         // Helper function to fetch link from Udemy API
         const newLink = await getUdemyLink(userInput);
+        // In this query, you will have to use newLink as it will be the new link that wasn't already in the database
         const postResult = await db.query(addQueryStr);
         const fetchResult = await db.query(queryStr);
         url = fetchResult.rows[0];
