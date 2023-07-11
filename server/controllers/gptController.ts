@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { getProsCons } from '../actions/postProsCons';
+import { getPros } from '../actions/postProsCons';
 import { prosCons } from '../types';
+import db, { users, tech } from '../db';
 
 // const gptController: prosCons = {
 //   getProsCons: async (req: Request, res: Response, next: NextFunction) => {
@@ -39,7 +40,7 @@ import { prosCons } from '../types';
 const gptController: prosCons = {
   getProsCons: async (req: Request, res: Response, next: NextFunction) => {
     const { userInput } = req.body;
-    const prosCons = await getProsCons(userInput);
+    const prosCons = await getPros(userInput);
     res.locals.prosCons = prosCons;
     return next();
   },

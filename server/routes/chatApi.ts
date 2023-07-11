@@ -3,7 +3,7 @@ import gptController from '../controllers/gptController';
 
 const chatRouter = Router();
 
-chatRouter.get('/', gptController.getProsCons, (req, res) => {
+chatRouter.post('/', gptController.getProsCons, (req, res) => {
   return res.status(200).json(res.locals.prosCons);
 });
 
