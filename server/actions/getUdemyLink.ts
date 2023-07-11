@@ -10,8 +10,8 @@ export const getUdemyLink = async (userInput: string) => {
         },
       }
     );
-    const data = await response.json();
-    return data;
+    const processedResponse = await response.json();
+    return processedResponse;
   } catch (error) {
     console.error(error);
   }
