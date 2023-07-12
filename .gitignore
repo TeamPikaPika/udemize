@@ -1,4 +1,4 @@
 node_modules
 .env
-../server/.env
-../src/.env.local
+./server/.env
+./src/.env.local
