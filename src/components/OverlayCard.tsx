@@ -3,39 +3,35 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { Typography } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 type Tech = 'angular' | 'react' | string;
 
 export default function OverlayCard(props: any) {
-
   const [state, setState] = React.useState({
     right: false,
   });
 
   const toggleDrawer =
+    (tech: Tech, open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
 
-
-      (tech: Tech, open: boolean) =>
-      (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (
-          event.type === 'keydown' &&
-          ((event as React.KeyboardEvent).key === 'Tab' ||
-            (event as React.KeyboardEvent).key === 'Shift')
-        ) {
-          return;
-        }
-
-        // setState({ ...state, [anchor]: open });
-        setState({ ...state, [tech]: open });
-      };
+      setState({ ...state, [tech]: open });
+    };
 
   const card = (anchor: Anchor) => (
     <Box
       sx={{
-        width: 1000,
+        width: 800,
         p: 10,
       }}
       role='presentation'
@@ -69,7 +65,7 @@ export default function OverlayCard(props: any) {
           flexDirection: 'column',
         }}
       >
-        <Box>
+        <Box sx={{ color: 'success.main' }}>
           <Typography variant='h4' sx={{ py: 2 }}>
             Pros:
           </Typography>
@@ -81,7 +77,7 @@ export default function OverlayCard(props: any) {
             )}
           </Typography>
         </Box>
-        <Box>
+        <Box sx={{ color: 'error.main' }}>
           <Typography variant='h4' sx={{ py: 2 }}>
             Cons:
           </Typography>
@@ -95,11 +91,7 @@ export default function OverlayCard(props: any) {
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          py: 2,
-        }}
-      >
+      <Box sx={{ py: 2 }}>
         <Typography variant='h4' sx={{ py: 2 }}>
           Alternatives:
         </Typography>
@@ -119,8 +111,39 @@ export default function OverlayCard(props: any) {
           py: 4,
         }}
       >
-        Related Courses:
+        Related Videos:
       </Typography>
+      <Box>
+        {/* {Object.values(props.element.threeVideos).map(
+              (ele: string, ind: number) => (
+                <iframe key={ele + ind} width="600" height="400" src="https://www.youtube.com/embed/H2I6V0NlaHg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+              ),
+            )} */}
+        <iframe
+          width='600'
+          height='400'
+          src='https://www.youtube.com/embed/H2I6V0NlaHg'
+          title='YouTube video player'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+          allowFullScreen
+        ></iframe>
+        <iframe
+          width='600'
+          height='400'
+          src='https://www.youtube.com/embed/H2I6V0NlaHg'
+          title='YouTube video player'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+          allowFullScreen
+        ></iframe>
+        <iframe
+          width='600'
+          height='400'
+          src='https://www.youtube.com/embed/H2I6V0NlaHg'
+          title='YouTube video player'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+          allowFullScreen
+        ></iframe>
+      </Box>
     </Box>
   );
 
@@ -128,9 +151,12 @@ export default function OverlayCard(props: any) {
     <div>
       {(['right'] as const).map(anchor => (
         <React.Fragment key={props.element.techName}>
-          <Button onClick={toggleDrawer(anchor, true)}>
-            {props.element.techName}
-          </Button>
+          <Tooltip title={props.element.techName + ' Notes'} arrow>
+            <Button onClick={toggleDrawer(anchor, true)}>
+              {props.element.techName}
+            </Button>
+          </Tooltip>
+
           <Drawer
             anchor={anchor}
             open={state[anchor]}
