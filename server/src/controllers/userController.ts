@@ -10,17 +10,14 @@ export const userController = {
   },
   createUser: async (req, res, next) => {
     const { email, password, firstName, lastName } = req.body;
-    console.log(email, password, firstName, lastName);
     if (!email || !password || !firstName || !lastName) {
       return next('Error: email and Password are required');
     }
     try {
       const userDoc = await User.create({ firstName, lastName, email, password });
       res.locals.user = userDoc;
-      console.log('userDoc' + userDoc);
       return next();
     } catch (err) {
-      console.log('oops' + err);
       return next(err);
     }
   },

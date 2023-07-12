@@ -43,28 +43,27 @@ export default function SignUp() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
     const firstName = data.get('firstName');
     const lastName = data.get('lastName');
     const email = data.get('email');
     const password = data.get('password');
-    console.log(firstName, lastName, email, password);
 
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ firstName, lastName, email, password }),
       });
+      console.log('response' + response);
 
       if (response.ok) {
+        console.log('yay');
         navigate('/dashboard');
       } else {
+        console.log('oops');
         navigate('/signup');
       }
     } catch (error) {
