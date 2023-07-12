@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import ProtectedRoutes from './ProtectedRoutes';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UserProvider from './context/UserContext';
+import React from 'react';
 
 /*
 this is not the suggested way to make a router, but createRouter wouldn't work with protected routes

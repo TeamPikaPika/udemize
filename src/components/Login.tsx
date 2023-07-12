@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getGoogleUrl } from '../utilities/getGoogleUrls';
+import React from 'react';
 
 /* 
 Copyright Component
