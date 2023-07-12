@@ -129,13 +129,11 @@ const TechTable: FC = () => {
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
       <TableCell component='th' scope='row'>
-        {/* {ele.techName} */}
 				<OverlayCard element={ele} index={ind}></OverlayCard>
       </TableCell>
     </TableRow>
   ));
 
-  // console.log(rows, rowElements);
 
   return (
     <TableContainer component={Paper} sx={{ width: '40%', margin: '2em auto' }} elevation={4}>

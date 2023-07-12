@@ -124,34 +124,9 @@ export default function OverlayCard(props: any) {
                   <Link href={`https://www.udemy.com${ele.link}`}>{ele.title}</Link>
                   <br />
                   <img src={ele.thumbnail} onClick={() => handleImageClick(ele.link)}></img>
-
                 </div>
               )
             )}
-        {/* <iframe
-          width='600'
-          height='400'
-          src='https://www.youtube.com/embed/H2I6V0NlaHg'
-          title='YouTube video player'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-          allowFullScreen
-        ></iframe>
-        <iframe
-          width='600'
-          height='400'
-          src='https://www.youtube.com/embed/H2I6V0NlaHg'
-          title='YouTube video player'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-          allowFullScreen
-        ></iframe>
-        <iframe
-          width='600'
-          height='400'
-          src='https://www.youtube.com/embed/H2I6V0NlaHg'
-          title='YouTube video player'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-          allowFullScreen
-        ></iframe> */}
       </Box>
     </Box>
   );

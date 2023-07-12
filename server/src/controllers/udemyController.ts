@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { getUdemyLink } from '../actions/getUdemyLink';
-import { Course } from '../types';
+import { Course } from '../../types';
 
 const udemyController: Course = {
   getCourse: async (req: Request, res: Response, next: NextFunction) => {
