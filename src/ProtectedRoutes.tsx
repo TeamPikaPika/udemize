@@ -3,7 +3,10 @@ import { useContext } from 'react'
 import { UserContext } from './context/UserContext'
 
 
-// const { user } = useContext(UserContext)
+
+/*
+  This funciton checks if the user is logged in, and returns true or false
+*/
 
 const useAuth = () => {
   const { user } = useContext(UserContext)
@@ -12,6 +15,11 @@ const useAuth = () => {
  
 	return newUser && newUser.loggedIn;
 };
+
+
+/*
+  This funciton is used to wrap routes, and checks if users are logged in
+*/
 
 const ProtectedRoutes = () => {
 	const isAuth = useAuth();
