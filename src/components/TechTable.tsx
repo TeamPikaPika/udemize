@@ -56,6 +56,7 @@ const TechTable: FC = () => {
 			<TableCell component="th" scope="row">
 				{ele.techName}
 			</TableCell>
+			
 		</TableRow>
   ));
   
