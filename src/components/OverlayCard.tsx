@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { Tooltip, Typography } from '@mui/material';
+import { Link, Tooltip, Typography } from '@mui/material';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -26,6 +26,10 @@ export default function OverlayCard(props: any) {
       }
 
       setState({ ...state, [tech]: open });
+    };
+
+    const handleImageClick = (url: string) => {
+      window.open(`https://www.udemy.com${url}`, '_blank');
     };
 
   const card = (anchor: Anchor) => (
@@ -114,12 +118,17 @@ export default function OverlayCard(props: any) {
         Related Courses:
       </Typography>
       <Box>
-        {/* {Object.values(props.element.threeVideos).map(
-              (ele: string, ind: number) => (
-                <iframe key={ele + ind} width="600" height="400" src="https://www.youtube.com/embed/H2I6V0NlaHg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-              ),
-            )} */}
-        <iframe
+        {Object.values(props.element.threeUdemy).map(
+              (ele: any, ind: number) => (
+                <div key={ele.title}>
+                  <Link href={`https://www.udemy.com${ele.link}`}>{ele.title}</Link>
+                  <br />
+                  <img src={ele.thumbnail} onClick={() => handleImageClick(ele.link)}></img>
+
+                </div>
+              )
+            )}
+        {/* <iframe
           width='600'
           height='400'
           src='https://www.youtube.com/embed/H2I6V0NlaHg'
@@ -142,7 +151,7 @@ export default function OverlayCard(props: any) {
           title='YouTube video player'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
           allowFullScreen
-        ></iframe>
+        ></iframe> */}
       </Box>
     </Box>
   );
