@@ -63,6 +63,11 @@ const Login: FC = () => {
     TODO fetch request to back end to confirm user id
     */
 		console.log('hi')
+
+		/* 
+		CHANGE THIS.  Right now it logs in everyone, only login someone after they pass authentication
+    */
+
 		setUser((prev) => ({
 			...prev,
 			loggedIn: true,
