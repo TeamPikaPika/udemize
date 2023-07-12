@@ -14,11 +14,11 @@ GPTActions.getPros = async (userInput: string): Promise<string> => {
       messages: [
         {
           role: 'user',
-          content: `give me 3 pros of the tech ${userInput} in one sentance each where all combined points are 750 characters or less I cannot hold more characters that that in my database.`,
+          content: `give me 3 pros of the tech ${userInput} where each point in no more that 250 characters including whitespace I cannot hold more characters that that in my database.`,
         },
       ],
     });
-
+    console.log(completion.data.choices[0].message.content)
     return completion.data.choices[0].message.content;
   } catch (err) {
     if (err.response) {
@@ -39,11 +39,11 @@ GPTActions.getCons = async (userInput: string): Promise<string> => {
       messages: [
         {
           role: 'user',
-          content: `In one word, what is another word for ${userInput}?`,
+          content: `give me 3 cons of the tech ${userInput} where each point in no more that 250 characters including whitespace I cannot hold more characters that that in my database.`,
         },
       ],
     });
-
+    console.log(completion.data.choices[0].message.content)
     return completion.data.choices[0].message.content;
   } catch (err) {
     if (err.response) {

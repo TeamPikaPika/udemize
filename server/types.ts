@@ -5,5 +5,6 @@ export type Course = {
 };
 
 export type prosCons = {
-  getProsCons: (req: Request, res: Response, next: NextFunction) => void;
+  getPros: (req: Request, res: Response, next: NextFunction) => void;
+  getCons: (req: Request, res: Response, next: NextFunction) => void;
 };
