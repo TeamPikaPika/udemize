@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { Request, Response, NextFunction } from 'express';
+import 'dotenv/config';
 // var cookieParser = require('cookie-parser');
 
 const app = express();

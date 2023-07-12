@@ -1,46 +1,35 @@
 import { Request, Response, NextFunction } from 'express';
-import { getProsCons } from '../actions/postProsCons';
+import GPTActions from '../actions/GPTActions';
 import { prosCons } from '../types';
-
-// const gptController: prosCons = {
-//   getProsCons: async (req: Request, res: Response, next: NextFunction) => {
-//     const { userInput } = req.body;
-//     if (!userInput)
-//       return next({
-//         log: 'Missing userInput!!',
-//         status: 400,
-//         message: { err: 'Missing userInput!!' },
-//       });
-//     const queryStr = ``;
-//     const addQueryStr = ``;
-//     const result = await db.query(queryStr);
-//     try {
-//       let url;
-//       if (result) {
-//         url = result.rows[0];
-//       } else {
-//         // Helper function to fetch link from Udemy API
-//         const newLink = await getUdemyLink(userInput);
-//         // In this query, you will have to use newLink as it will be the new link that wasn't already in the database
-//         const postResult = await db.query(addQueryStr);
-//         const fetchResult = await db.query(queryStr);
-//         url = fetchResult.rows[0];
-//       }
-//       res.locals.url = url;
-//       return next();
-//     } catch (err) {
-//       next({
-//         log: 'Error in udemyController.getCourse',
-//       });
-//     }
-//   },
-// };
+import db, { users, tech } from '../db';
 
 const gptController: prosCons = {
-  getProsCons: async (req: Request, res: Response, next: NextFunction) => {
+  getPros: async (req: Request, res: Response, next: NextFunction) => {
+    const regExp = new RegExp('(1.|2.|3.).+?([\\\n]|.$)', 'g');
+    const pros: {[key: string]: string} = {}
+
     const { userInput } = req.body;
-    const prosCons = await getProsCons(userInput);
-    res.locals.prosCons = prosCons;
+    let GPTpros = await GPTActions.getPros(userInput);
+    GPTpros = GPTpros.match(regExp);
+    await GPTpros.map((el: string, i: number) => {
+      pros[`pro${i + 1}`] = el.replace(/((1\. |2\. |3\. )|\r\n|\n|\r)/gm, '');
+    });
+    res.locals.data = {};
+    res.locals.data.pros = pros
+    return next();
+  },
+  
+  getCons: async (req: Request, res: Response, next: NextFunction) => {
+    const regExp = new RegExp('(1.|2.|3.).+?([\\\n]|.$)', 'g');
+    const cons: {[key: string]: string} = {}
+
+    const { userInput } = req.body;
+    let GPTcons = await GPTActions.getCons(userInput);
+    GPTcons = GPTcons.match(regExp);
+    await GPTcons.map((el: string, i: number) => {
+      cons[`con${i + 1}`] = el.replace(/((1\. |2\. |3\. )|\r\n|\n|\r)/gm, '');
+    });
+    res.locals.data.cons = cons;
     return next();
   },
 };
