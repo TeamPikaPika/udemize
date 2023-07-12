@@ -5,13 +5,11 @@ import Signup from './Signup';
 import { Outlet, Link } from 'react-router-dom';
 
 const Container: FC = () => {
-	return (
-		<div className="container">
-			'container'
+  return (
+    <div className="container">
 			<Outlet />
-	
-		</div>
-	);
-};
+   </div>
+ )
+}
 
 export default Container;
