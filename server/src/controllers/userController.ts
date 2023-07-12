@@ -10,15 +10,17 @@ export const userController = {
   },
   createUser: async (req, res, next) => {
     const { email, password, firstName, lastName } = req.body;
+    console.log(email, password, firstName, lastName);
     if (!email || !password || !firstName || !lastName) {
       return next('Error: email and Password are required');
     }
     try {
       const userDoc = await User.create({ firstName, lastName, email, password });
       res.locals.user = userDoc;
+      console.log('userDoc' + userDoc);
       return next();
     } catch (err) {
-      console.log(err);
+      console.log('oops' + err);
       return next(err);
     }
   },
@@ -29,7 +31,6 @@ export const userController = {
     }
     try {
       const userDoc = await User.findOne({ email });
-      // console.log(userDoc);
       if (!userDoc || !(await bcryptt.compare(password, userDoc.password)))
         return res.redirect('/signup');
       res.locals.user = userDoc;

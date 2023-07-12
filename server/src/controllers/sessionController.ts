@@ -15,7 +15,6 @@ export const sessionController = {
     const { id } = res.locals.user;
     try {
       const sessionDoc = await Session.create({ cookieId: id });
-
       return next();
     } catch (err) {
       return next(err);

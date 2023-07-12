@@ -7,7 +7,7 @@ import { sessionController } from './src/controllers/sessionController';
 import 'dotenv/config';
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-// var cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
@@ -29,6 +29,7 @@ mongoose.connection.once('open', () => {
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cookieParser());
+app.use(cors());
 
 /* 
 Import routers
@@ -65,6 +66,7 @@ app.post(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
+    console.log('hitting signup');
     res.redirect('/dashboard');
   }
 );
@@ -78,9 +80,14 @@ app.post(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
+    console.log('hello');
     res.redirect('/dashboard');
   }
 );
+
+app.get('/dashboard', (req, res) => {
+  res.send('wsap');
+});
 
 // app.use('/udemy', udemyRouter);
 app.use('/chatgpt', chatRouter);

@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-/**
- * Hint: Why is bcrypt required here?
- */
 const SALT_WORK_FACTOR = 10;
 const bcrypt = require('bcryptjs');
 
-//const userSchema = new Schema({ ... });: This line creates a new instance of the Schema class provided by Mongoose.
-//The Schema class is used to define the structure of a document in a MongoDB collection.
 const userSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -16,5 +11,13 @@ const userSchema = new Schema({
   password: { type: String, required: true },
 });
 
-//This line exports the User model, which is created by calling mongoose.model(). It associates the User model with the userSchema we defined. The 'User' string is the name of the model, and it will be used to reference and interact with the User collection in the MongoDB database.
+userSchema.pre('save', async function (next) {
+  try {
+    this.password = await bcrypt.hash(this.password, SALT_WORK_FACTOR);
+    return next();
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = mongoose.model('User', userSchema);

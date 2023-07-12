@@ -54,13 +54,13 @@ const Login: FC = () => {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
-      password: data.get('signup'),
+      password: data.get('password'),
     });
     const email = data.get('email');
     const password = data.get('password');
 
     try {
-      const response = await fetch('/login', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,10 +70,8 @@ const Login: FC = () => {
       console.log(response);
 
       if (response.ok) {
-        console.log('response is ok');
         navigate('/dashboard');
       } else {
-        console.log('response is oops');
         navigate('/signup');
       }
     } catch (error) {
@@ -82,7 +80,6 @@ const Login: FC = () => {
     /* 
     TODO fetch request to back end to confirm user id
     */
-    console.log('hi');
 
     /* 
 		CHANGE THIS.  Right now it logs in everyone, only login someone after they pass authentication
@@ -97,7 +94,7 @@ const Login: FC = () => {
 
   return (
     <div>
-      {user.loggedIn && <Navigate to="/dashboard" replace={true} />}
+      {/* {user.loggedIn && <Navigate to="/dashboard" replace={true} />} */}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

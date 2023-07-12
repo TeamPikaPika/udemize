@@ -51,9 +51,10 @@ export default function SignUp() {
     const lastName = data.get('lastName');
     const email = data.get('email');
     const password = data.get('password');
+    console.log(firstName, lastName, email, password);
 
     try {
-      const response = await fetch('/signup', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
