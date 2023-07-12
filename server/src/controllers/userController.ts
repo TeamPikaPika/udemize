@@ -22,6 +22,7 @@ export const userController = {
     }
   },
   verifyUser: async (req, res, next) => {
+    console.log('verify user');
     const { email, password } = req.body;
     if (!email || !password) {
       return next('Error: email and Password are required');

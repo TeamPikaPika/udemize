@@ -53,10 +53,6 @@ const Login: FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
     const email = data.get('email');
     const password = data.get('password');
 
@@ -68,11 +64,12 @@ const Login: FC = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-      console.log(response);
 
       if (response.ok) {
+        console.log('yay');
         navigate('/dashboard');
       } else {
+        console.log('oops');
         navigate('/signup');
       }
     } catch (error) {
