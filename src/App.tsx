@@ -13,21 +13,22 @@ this is not the suggested way to make a router, but createRouter wouldn't work w
 */
 
 const App: FC = () => {
-	return (
-		<BrowserRouter>
-			<UserProvider>
-				<Routes>
-					<Route path="/" element={<Container />}>
-						<Route path="/" element={<Login />} />
-						<Route path="signup" element={<Signup />} />
-						<Route element={<ProtectedRoutes />}>
-							<Route path="dashboard" element={<Dashboard />} />
-						</Route>
-					</Route>
-				</Routes>
-			</UserProvider>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <UserProvider>
+        <Routes>
+          {/* <Route path="/" element={<Container />}> */}
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          {/* <Route element={<ProtectedRoutes />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route> */}
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          {/* </Route> */}
+        </Routes>
+      </UserProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;
