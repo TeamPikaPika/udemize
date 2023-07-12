@@ -4,7 +4,9 @@ export type Course = {
   getCourse: (req: Request, res: Response, next: NextFunction) => void;
 };
 
-export type prosCons = {
+export type GPTController = {
+  getSummary: (req: Request, res: Response, next: NextFunction) => void;
   getPros: (req: Request, res: Response, next: NextFunction) => void;
   getCons: (req: Request, res: Response, next: NextFunction) => void;
+  getAlternatives: (req: Request, res: Response, next: NextFunction) => void;
 };
