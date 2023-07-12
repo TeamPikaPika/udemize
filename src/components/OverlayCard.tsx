@@ -10,49 +10,43 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 type Tech = 'angular' | 'react' | string;
 
 export default function OverlayCard(props: any) {
-  console.log(props)
 
   const [state, setState] = React.useState({
-    // top: false,
-    // left: false,
-    // bottom: false,
     right: false,
   });
 
   const toggleDrawer =
-    // (anchor: Anchor, open: boolean) =>
-    (tech: Tech, open: boolean) =>
-
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
-
-      // setState({ ...state, [anchor]: open });
-      setState({ ...state, [tech]: open });
-      // console.log(state)
-    };  
 
 
-  // const card = (anchor: Anchor) => (
+      (tech: Tech, open: boolean) =>
+      (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+          return;
+        }
+
+        // setState({ ...state, [anchor]: open });
+        setState({ ...state, [tech]: open });
+      };
+
   const card = (anchor: Anchor) => (
-
     <Box
-      sx={{ width: 1000 }}
-      role="presentation"
+      sx={{
+        width: 1000,
+        p: 10,
+      }}
+      role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-
       <Typography
         variant='h3'
         sx={{
           textAlign: 'center',
-          paddingBottom: 5,
+          py: 5,
         }}
       >
         {props.element.techName}
@@ -60,57 +54,83 @@ export default function OverlayCard(props: any) {
 
       <Box
         sx={{
-          paddingTop: 2,
-          paddingBottom: 2,
+          py: 2,
         }}
       >
-        <Typography variant='h4' sx={{}}>
+        <Typography variant='h4' sx={{ py: 2 }}>
           Summary:
         </Typography>
-        <Typography variant='body1'>***SUMMARY TEXT HERE***</Typography>
+        <Typography variant='body1'>{props.element.summary}</Typography>
       </Box>
 
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-around',
+          flexDirection: 'column',
         }}
       >
         <Box>
-          <Typography variant='h4'>Pros:</Typography>
-          <Typography variant='body1'>{Object.values(props.element.threePros)}</Typography>
-					{/* <Typography variant='body1'>{ele.threePros}</Typography> */}
-
+          <Typography variant='h4' sx={{ py: 2 }}>
+            Pros:
+          </Typography>
+          <Typography variant='body1'>
+            {Object.values(props.element.threePros).map(
+              (ele: string, ind: number) => (
+                <li key={ele + ind}>{ele}</li>
+              ),
+            )}
+          </Typography>
         </Box>
         <Box>
-          <Typography variant='h4'>Cons:</Typography>
-          <Typography variant='body1'>***CONS TEXT HERE***</Typography>
+          <Typography variant='h4' sx={{ py: 2 }}>
+            Cons:
+          </Typography>
+          <Typography variant='body1'>
+            {Object.values(props.element.threeCons).map(
+              (ele: string, ind: number) => (
+                <li key={ele + ind}>{ele}</li>
+              ),
+            )}
+          </Typography>
         </Box>
       </Box>
 
       <Box
         sx={{
-          paddingTop: 2,
-          paddingBottom: 2,
+          py: 2,
         }}
       >
-        <Typography variant='h4'>Alternatives</Typography>
-        <Typography variant='body1'>***ALTERNATIVES TEXT HERE***</Typography>
+        <Typography variant='h4' sx={{ py: 2 }}>
+          Alternatives:
+        </Typography>
+        <Typography variant='body1'>
+          {Object.values(props.element.threeAlternatives).map(
+            (ele: string, ind: number) => (
+              <li key={ele + ind}>{ele}</li>
+            ),
+          )}
+        </Typography>
       </Box>
 
-      <Divider />
-      <Typography variant='h4'>Related Courses</Typography>
-
+      <Divider sx={{ py: 2 }} />
+      <Typography
+        variant='h4'
+        sx={{
+          py: 4,
+        }}
+      >
+        Related Courses:
+      </Typography>
     </Box>
   );
 
   return (
     <div>
-      {/* {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => ( */}
-      {(['right'] as const).map((anchor) => (
-
+      {(['right'] as const).map(anchor => (
         <React.Fragment key={props.element.techName}>
-          <Button onClick={toggleDrawer(anchor, true)}>{props.element.techName}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>
+            {props.element.techName}
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

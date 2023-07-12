@@ -5,7 +5,7 @@ import Login from "./Login"
 const Container: FC = () => {
   return (
     <div className="container">
-      'container'
+      {/* 'container' */}
       <Dashboard />
       <Login />
    </div>
