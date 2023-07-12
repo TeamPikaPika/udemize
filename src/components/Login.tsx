@@ -1,5 +1,6 @@
-import { useState, SyntheticEvent, FC } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useContext, useEffect } from 'react';
+import { UserContext } from '../context/UserContext';
+import { Link, Navigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -41,6 +42,13 @@ Login component
 */
 
 const Login: FC = () => {
+	const { user, setUser } = useContext(UserContext);
+
+
+	useEffect(() => {
+		
+	}, [user.loggedIn])
+
 	/* 
   Submit handler, shoots a request to backend to verify user
 */
@@ -54,10 +62,23 @@ const Login: FC = () => {
 		/* 
     TODO fetch request to back end to confirm user id
     */
-
+		console.log('hi')
+		setUser((prev) => ({
+			...prev,
+			loggedIn: true,
+		}));
+		console.log(user);
 	};
 
+
+
+
+
 	return (
+		<div>
+			{user.loggedIn && (
+          <Navigate to="/dashboard" replace={true} />
+        )}
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<Box
@@ -122,6 +143,9 @@ const Login: FC = () => {
 			</Box>
 			<Copyright sx={{ mt: 8, mb: 4 }} />
 		</Container>
+
+		</div>
+		
 	);
 };
 

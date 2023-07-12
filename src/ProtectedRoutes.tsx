@@ -1,8 +1,16 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useContext } from 'react'
+import { UserContext } from './context/UserContext'
+
+
+// const { user } = useContext(UserContext)
 
 const useAuth = () => {
-	const user = { loggedIn: false };
-	return user && user.loggedIn;
+  const { user } = useContext(UserContext)
+  const newUser = { loggedIn: false };
+  newUser.loggedIn = user.loggedIn
+ 
+	return newUser && newUser.loggedIn;
 };
 
 const ProtectedRoutes = () => {
