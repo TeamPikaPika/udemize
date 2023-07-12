@@ -7,8 +7,6 @@ const udemyController: Course = {
     // const { userInput } = req.body;
     const { userInput } = req.params;
 
-    console.log('iunput', userInput)
-
     // if (!userInput)
     //   return next({
     //     log: 'Missing userInput!!',
@@ -37,11 +35,9 @@ const udemyController: Course = {
     //     log: 'Error in udemyController.getCourse',
     //   });
     // }
-    
-    console.log('in getCourse')
+
     const newLink = await getUdemyLink(userInput);
     res.locals.newLink = newLink;
-    console.log(res.locals);
     return next();
   },
 };

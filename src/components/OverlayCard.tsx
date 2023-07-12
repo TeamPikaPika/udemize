@@ -111,7 +111,7 @@ export default function OverlayCard(props: any) {
           py: 4,
         }}
       >
-        Related Videos:
+        Related Courses:
       </Typography>
       <Box>
         {/* {Object.values(props.element.threeVideos).map(
