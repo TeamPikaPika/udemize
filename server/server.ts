@@ -35,7 +35,7 @@ app.use(cors());
 /* 
 Import routers
 */
-// import udemyRouter from './routes/udemyApi';
+import udemyRouter from './src/routes/udemyApi';
 import chatRouter from './src/routes/chatApi';
 
 /*

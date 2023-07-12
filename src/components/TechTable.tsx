@@ -32,19 +32,19 @@ const TechTable: FC = () => {
       },
       threeUdemy: {
         1: {
-          link: '',
-          title: '',
-          thumbnail: '',
+          link: '/course/the-complete-guide-to-angular-2/',
+          title: 'Angular - The Complete Guide (2023 Edition)',
+          thumbnail: 'https://img-c.udemycdn.com/course/480x270/756150_c033_2.jpg',
         },
         2: {
-          link: '',
-          title: '',
-          thumbnail: '',
+          link: '/course/the-modern-angular-bootcamp/',
+          title: 'The Modern Angular Bootcamp',
+          thumbnail: 'https://img-c.udemycdn.com/course/480x270/2685124_37c5_3.jpg',
         },
         3: {
-          link: '',
-          title: '',
-          thumbnail: '',
+          link: '/course/complete-angular-developer-zero-to-mastery/',
+          title: 'Complete Angular Developer in 2023: Zero to Mastery',
+          thumbnail: 'https://img-c.udemycdn.com/course/480x270/4403121_33c8_4.jpg',
         },
       },
     },
@@ -68,19 +68,19 @@ const TechTable: FC = () => {
       },
       threeUdemy: {
         1: {
-          link: '',
-          title: '',
-          thumbnail: '',
+          link: '/course/react-the-complete-guide-incl-redux/',
+          title: 'React - The Complete Guide 2023 (incl. React Router & Redux)',
+          thumbnail: 'https://img-c.udemycdn.com/course/480x270/1362070_b9a1_2.jpg',
         },
         2: {
-          link: '',
-          title: '',
-          thumbnail: '',
+          link: '/course/the-ultimate-react-course/',
+          title: 'The Ultimate React Course 2023: React, Redux & More',
+          thumbnail: 'https://img-c.udemycdn.com/course/480x270/4471614_361e_5.jpg',
         },
         3: {
-          link: '',
-          title: '',
-          thumbnail: '',
+          link: '/course/react-tutorial-and-projects-course/',
+          title: 'React 18 Tutorial and Projects Course (2023)',
+          thumbnail: 'https://img-c.udemycdn.com/course/480x270/2018828_41a9_3.jpg',
         },
       },
     },
@@ -129,13 +129,11 @@ const TechTable: FC = () => {
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
       <TableCell component='th' scope='row'>
-        {/* {ele.techName} */}
 				<OverlayCard element={ele} index={ind}></OverlayCard>
       </TableCell>
     </TableRow>
   ));
 
-  // console.log(rows, rowElements);
 
   return (
     <TableContainer component={Paper} sx={{ width: '40%', margin: '2em auto' }} elevation={4}>
