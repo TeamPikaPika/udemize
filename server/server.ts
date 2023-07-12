@@ -10,7 +10,7 @@ const PORT = 3000;
 /* 
 Import routers
 */
-// import udemyRouter from './routes/udemyApi';
+import udemyRouter from './routes/udemyApi';
 import chatRouter from './routes/chatApi';
 
 /*
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 /* 
 Route handlers
 */
-// app.use('/udemy', udemyRouter);
+app.use('/api/udemy', udemyRouter);
 app.use('/chatgpt', chatRouter);
 
 /* 

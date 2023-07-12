@@ -20,6 +20,14 @@ const Dashboard: FC = () => {
 		//TODO: insert call to backend
     //TODO: update the user's saved techstack with the new tech
 		//reset formData
+		
+
+
+		console.log('Searching for', formData)
+		fetch(`/api/udemy/${formData}`)
+			.then(result => result.json())
+			.then(result => console.log(result));
+
 		setFormData('');
 	};
 
@@ -50,6 +58,11 @@ const Dashboard: FC = () => {
 					variant="outlined"
 					sx={{ width: '100%' }}
 					onChange={(e) => setFormData(e.target.value)}
+					onKeyUp={(e) => {
+						if (e.key === "Enter") {
+							onSubmit(e);
+						}
+					}}
 				/>
 			</Box>
 			<TechTable />

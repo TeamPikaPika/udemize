@@ -1,10 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
-// import { getUdemyLink } from '../actions/getUdemyLink';
+import { getUdemyLink } from '../actions/getUdemyLink';
 import { Course } from '../types';
 
 const udemyController: Course = {
   getCourse: async (req: Request, res: Response, next: NextFunction) => {
     // const { userInput } = req.body;
+    const { userInput } = req.params;
+
+    console.log('iunput', userInput)
+
     // if (!userInput)
     //   return next({
     //     log: 'Missing userInput!!',
@@ -33,6 +37,12 @@ const udemyController: Course = {
     //     log: 'Error in udemyController.getCourse',
     //   });
     // }
+    
+    console.log('in getCourse')
+    const newLink = await getUdemyLink(userInput);
+    res.locals.newLink = newLink;
+    console.log(res.locals);
+    return next();
   },
 };
 
