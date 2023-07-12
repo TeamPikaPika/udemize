@@ -1,22 +1,16 @@
 import { Router } from 'express';
 import initializeData from '../controllers/initializeData';
-import gptController from '../controllers/gptController';
 import dbController from '../controllers/dbController';
 
-const chatRouter = Router();
+const dbRouter = Router();
 
-chatRouter.post(
+dbRouter.post(
   '/',
   initializeData.initialize,
   dbController.getData,
-  gptController.getSummary,
-  gptController.getPros,
-  gptController.getCons,
-  gptController.getAlternatives,
-  dbController.addData,
   (req, res) => {
     return res.status(200).json(res.locals.data);
   }
 );
 
-export default chatRouter;
+export default dbRouter;

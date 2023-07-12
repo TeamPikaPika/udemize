@@ -43,21 +43,63 @@
     "name": "tech",
     "columns": [
       {
-        "name": "alternatives",
+        "name": "alternative1",
         "isNullable": true,
         "hasDefault": false,
         "typeId": 1043,
         "typeName": "VARCHAR"
       },
       {
-        "name": "cons",
+        "name": "alternative2",
         "isNullable": true,
         "hasDefault": false,
         "typeId": 1043,
         "typeName": "VARCHAR"
       },
       {
-        "name": "pros",
+        "name": "alternative3",
+        "isNullable": true,
+        "hasDefault": false,
+        "typeId": 1043,
+        "typeName": "VARCHAR"
+      },
+      {
+        "name": "con1",
+        "isNullable": true,
+        "hasDefault": false,
+        "typeId": 1043,
+        "typeName": "VARCHAR"
+      },
+      {
+        "name": "con2",
+        "isNullable": true,
+        "hasDefault": false,
+        "typeId": 1043,
+        "typeName": "VARCHAR"
+      },
+      {
+        "name": "con3",
+        "isNullable": true,
+        "hasDefault": false,
+        "typeId": 1043,
+        "typeName": "VARCHAR"
+      },
+      {
+        "name": "pro1",
+        "isNullable": true,
+        "hasDefault": false,
+        "typeId": 1043,
+        "typeName": "VARCHAR"
+      },
+      {
+        "name": "pro2",
+        "isNullable": true,
+        "hasDefault": false,
+        "typeId": 1043,
+        "typeName": "VARCHAR"
+      },
+      {
+        "name": "pro3",
         "isNullable": true,
         "hasDefault": false,
         "typeId": 1043,
@@ -73,7 +115,7 @@
       {
         "name": "tech_id",
         "isNullable": false,
-        "hasDefault": false,
+        "hasDefault": true,
         "typeId": 23,
         "typeName": "INTEGER"
       },
