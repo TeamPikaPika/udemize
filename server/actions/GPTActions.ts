@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai';
 
 const configuration = new Configuration({
-  apiKey: process.env.GPT_KEY,
+  apiKey: process.env.GPT_KEY2,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -18,7 +18,7 @@ GPTActions.prompt = async (proompt: string): Promise<string> => {
         },
       ],
     });
-    console.log(completion.data.choices[0].message.content)
+
     return completion.data.choices[0].message.content;
   } catch (err) {
     if (err.response) {

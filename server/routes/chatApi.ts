@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import gptController from '../controllers/gptController';
+import initializeData from '../controllers/initializeData';
 
 const chatRouter = Router();
 
 chatRouter.post(
   '/',
+  initializeData.initialize,
   gptController.getSummary,
   gptController.getPros,
   gptController.getCons,

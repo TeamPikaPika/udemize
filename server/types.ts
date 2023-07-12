@@ -10,3 +10,11 @@ export type GPTController = {
   getCons: (req: Request, res: Response, next: NextFunction) => void;
   getAlternatives: (req: Request, res: Response, next: NextFunction) => void;
 };
+
+export type DBController = {
+  addData: (req: Request, res: Response, next: NextFunction) => void;
+};
+
+export type InitializeData = {
+  initialize: (req: Request, res: Response, next: NextFunction) => void;
+};
