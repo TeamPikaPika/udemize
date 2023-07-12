@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { getProsCons } from '../actions/postProsCons';
-import { prosCons } from '../types';
+import { prosCons } from '../../types';
 
 // const gptController: prosCons = {
 //   getProsCons: async (req: Request, res: Response, next: NextFunction) => {
