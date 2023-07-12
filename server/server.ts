@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { Request, Response, NextFunction } from 'express';
+import 'dotenv/config';
 import { userController } from './src/controllers/userController';
 import { cookieController } from './src/controllers/cookieController';
 import { sessionController } from './src/controllers/sessionController';
