@@ -26,7 +26,10 @@ const Dashboard: FC = () => {
 
 	return (
 		<>
-			<Typography variant="h2" sx={{ textAlign: 'center' }}>
+			<Typography variant="h2" sx={{
+				textAlign: 'center',
+				p: 10
+				}}>
 				Udemize
 			</Typography>
 
@@ -37,13 +40,13 @@ const Dashboard: FC = () => {
 					flexDirection: 'column',
 					alignItems: 'center',
 					justifyContent: 'center',
-					width: '50%',
+					width: '40%',
 					margin: '0 auto',
 				}}
 			>
 				<TextField
 					id="outlined-basic"
-					label="new tech"
+					label="Search for a technology"
 					variant="outlined"
 					sx={{ width: '100%' }}
 					onChange={(e) => setFormData(e.target.value)}
