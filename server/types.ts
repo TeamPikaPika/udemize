@@ -13,6 +13,7 @@ export type GPTController = {
 
 export type DBController = {
   addData: (req: Request, res: Response, next: NextFunction) => void;
+  getData: (req: Request, res: Response, next: NextFunction) => void;
 };
 
 export type InitializeData = {

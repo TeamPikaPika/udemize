@@ -8,6 +8,7 @@ const chatRouter = Router();
 chatRouter.post(
   '/',
   initializeData.initialize,
+  dbController.getData,
   gptController.getSummary,
   gptController.getPros,
   gptController.getCons,

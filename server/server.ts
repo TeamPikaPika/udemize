@@ -37,6 +37,7 @@ Import routers
 */
 // import udemyRouter from './routes/udemyApi';
 import chatRouter from './src/routes/chatApi';
+import dbRouter from './src/routes/dbRouter';
 
 /*
 Automatically parse urlencoded body content and form data from incoming requests and place it in req.body
@@ -92,6 +93,7 @@ app.get('/dashboard', (req, res) => {
 
 // app.use('/udemy', udemyRouter);
 app.use('/chatgpt', chatRouter);
+app.use('/db', dbRouter);
 
 /* 
 catch-all route handler for any requests to an unknown route 

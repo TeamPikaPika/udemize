@@ -24,7 +24,6 @@ const dbController: DBController = {
       cons: { [key: string]: string },
       alternatives: { [key: string]: string }
     ): Promise<void> => {
-
       await tech(db).insert({
         title,
         summary,
@@ -44,15 +43,59 @@ const dbController: DBController = {
       await insertData(title, summary, pros, cons, alternatives);
 
       await db.dispose();
-    }
+    };
 
     try {
-      run()
-    } catch(err) {
+      run();
+
+      return next();
+    } catch (err) {
       return next(err);
     }
+  },
 
-    return next();
+  getData: async (req, res, next) => {
+    const { title }: { title: string } = res.locals.data;
+
+    const findData = async (title: string) => {
+      return await tech(db).findOne({ title });
+    };
+
+    const run = async () => {
+      const data = await findData(title);
+
+      if (data === null) {
+        console.log('no data');
+        return;
+      }
+
+      const pros = {};
+      const cons = {};
+      const alternatives = {};
+
+      for (let i = 1; i <= 3; i++) {
+        pros[`pro${i}`] = data[`pro${i}`];
+        cons[`con${i}`] = data[`con${i}`];
+        alternatives[`alternative${i}`] = data[`alternative${i}`];
+      }
+
+      res.locals.data.summary = data.summary;
+      res.locals.data.pros = pros;
+      res.locals.data.cons = cons;
+      res.locals.data.alternatives = alternatives;
+
+      db.dispose();
+    };
+
+    try {
+      await run();
+      if (!res.locals.data.summary) return next();
+      
+      console.log('recieved data from db:', res.locals.data);
+      return res.status(200).json(res.locals.data);
+    } catch (err) {
+      return next(err);
+    }
   },
 };
 
