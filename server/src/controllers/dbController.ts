@@ -1,5 +1,5 @@
-import { DBController } from '../types';
-import db, { users, tech } from '../db';
+import { DBController } from '../../types';
+import db, { users, tech } from '../../db';
 
 const dbController: DBController = {
   addData: async (req, res, next) => {

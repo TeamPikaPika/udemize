@@ -2,16 +2,41 @@ import express from 'express';
 import path from 'path';
 import { Request, Response, NextFunction } from 'express';
 import 'dotenv/config';
-// var cookieParser = require('cookie-parser');
+import { userController } from './src/controllers/userController';
+import { cookieController } from './src/controllers/cookieController';
+import { sessionController } from './src/controllers/sessionController';
+import 'dotenv/config';
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
 
 /* 
+Connect to database 
+*/
+mongoose.connect(
+  'mongodb+srv://junealee07:udemize@cluster0.ap2isxt.mongodb.net/?retryWrites=true&w=majority'
+);
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+});
+
+/**
+ * Automatically parse urlencoded body content and form data from incoming requests and place it
+ * in req.body
+ */
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(cookieParser());
+app.use(cors());
+
+/* 
 Import routers
 */
 // import udemyRouter from './routes/udemyApi';
-import chatRouter from './routes/chatApi';
+import chatRouter from './src/routes/chatApi';
 
 /*
 Automatically parse urlencoded body content and form data from incoming requests and place it in req.body
@@ -27,13 +52,44 @@ app.use('/assets', express.static(path.resolve(__dirname, '../src/assets')));
 /* 
 Serve index.html 
 */
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
+// app.get('/api/sessions/oauth/google', googleOauthHandler);
 /* 
 Route handlers
 */
+
+app.post(
+  '/signup',
+  userController.createUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    console.log('hitting signup');
+    res.redirect('/dashboard');
+  }
+);
+
+/**
+ * login
+ */
+app.post(
+  '/login',
+  userController.verifyUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    console.log('hello');
+    res.redirect('/dashboard');
+  }
+);
+
+app.get('/dashboard', (req, res) => {
+  res.send('wsap');
+});
+
 // app.use('/udemy', udemyRouter);
 app.use('/chatgpt', chatRouter);
 
@@ -45,7 +101,7 @@ app.use('*', (req, res) => res.status(404).json('Page not found'));
 /* 
 Global error handler 
 */
-app.use('/', (err: any, req: Request, res: Response, next: NextFunction) => {
+app.use('/', (err, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error', // Log is for the developer as it will show up in the terminal
     status: 400,

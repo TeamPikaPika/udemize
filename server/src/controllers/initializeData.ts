@@ -1,4 +1,4 @@
-import { InitializeData } from '../types';
+import { InitializeData } from '../../types';
 
 const initializeData: InitializeData = {
   initialize: (req, res, next) => {
