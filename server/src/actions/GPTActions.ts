@@ -18,7 +18,6 @@ GPTActions.prompt = async (proompt: string): Promise<string> => {
         },
       ],
     });
-
     return completion.data.choices[0].message.content;
   } catch (err) {
     if (err.response) {
