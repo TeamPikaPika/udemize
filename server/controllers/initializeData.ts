@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express';
 import { InitializeData } from '../types';
 
 const initializeData: InitializeData = {

@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import gptController from '../controllers/gptController';
 import initializeData from '../controllers/initializeData';
+import gptController from '../controllers/gptController';
+import dbController from '../controllers/dbController';
 
 const chatRouter = Router();
 
@@ -11,6 +12,7 @@ chatRouter.post(
   gptController.getPros,
   gptController.getCons,
   gptController.getAlternatives,
+  dbController.addData,
   (req, res) => {
     return res.status(200).json(res.locals.data);
   }
