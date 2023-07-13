@@ -137,16 +137,32 @@ const Login: FC = () => {
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                {/* <Link href="#" variant="body2">
+            <Grid
+              container
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
+            >
+              {/* <Grid item xs> */}
+              {/* <Link href="#" variant="body2">
                   Forgot password?
                 </Link> */}
-              </Grid>
-              <Grid item>
+              {/* </Grid> */}
+              <Grid
+                item
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
                 {/* <Link href="#" variant="body2"> */}
-                <MuiLink href={getGoogleUrl(from)}>Link</MuiLink>
                 <Link to="signup">{"Don't have an account? Sign Up"}</Link>
+                <MuiLink href={getGoogleUrl(from)}>Log in with Google</MuiLink>
               </Grid>
             </Grid>
           </Box>
